@@ -557,7 +557,7 @@
 * 부트스트랩의 CSS(<head>태그에)와 JS(<body>태그에)의 코드 복사 붙여넣기
 * 부트스트랩에서 정해둔 클래스이름을 적기만 하면 CSS 적용
 * 그리드 시스템
-	<img src = "C:\Users\xzba1\Desktop\likelion\HTML_CSS\부트스트랩_그리드시스템.png">
+	<img src = "\부트스트랩_그리드시스템.png">
 
 	* 그리드 옵션을 이용해 반응형 웹 만들 수 있음
 	* .col-lg-4
