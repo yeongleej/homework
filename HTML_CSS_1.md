@@ -255,3 +255,311 @@
 
 * < button>< /button>: < input>태그의 버튼타입과 동일하게 버튼 생성
 
+
+
+
+
+## CSS 기초
+#### CSS(Cascading Style Sheet)
+* Style Sheet: 스타일 명세서
+* __선택자(Selector)__: 스타일을 적용하고자 하는 HTML요소를 선택하는 역할
+	* 예)  __p__{}
+	* {} => 선언블록(Declaration block), 중괄호로 다음 선언블록과 구분
+* __속성(Property)__: 지정한 스타일의 속성명에 해당
+	* __속성: 값;__이 한 단위 => 이 쌍을 선언(Declaration)이라고함.
+	* ;(세미콜론)을 이용하여 구분
+* __값(Value)__: 키워드나 특정 단위를 이용하여 원하는 스타일을 적용
+	* 속성(property)와 쌍을 이룸
+
+
+#### HTML에 CSS 적용
+1. Link Style: HTML에 외부에 있는 CSS파일을 불러옴
+2. Embedding Style: HTML의 <head>에 <style>를 이용하여 CSS 작성
+3. Inline Style: HTML요소에 직접 Style 속성(Attributes)을 이용하여  CSS를 작성
+
+
+
+
+
+
+## 선택자
+#### 선택자 기초
+* 일반적인 태그: h1, p, span, div, a 등등
+* 선택자(Selector): 스타일을 적용하고자 하는 HTML요소를 선택하는 역할
+* 여러개의 선택자를 ,(콤마)를 이용하여 스타일을 한번에 지정 가능
+	* 예) h1, p, td {}
+
+
+#### 단순 선택자
+* __타입 선택자(Type Selector)__: 해당 태그를 가지는 모든 요소에 스타일을 적용
+	* 예) p {color: red;} => <p>태그를 가지는 모든 요소 red로 적용
+* __아이디 선택자(Id Selector)__: Id로 스타일을 적용, 해당 Id 하나에 적용(Id는 단 하나)
+	* 아이디(Id): HTML문서 내에서 동일한 아이디는 존재할 수 없음, 다른 요소와 구분되는 점을 만들어줌 
+	* __#(아이디) {}__  로 적용
+* __클래스 선택자(Class Selector)__: 클래스 이름으로 스타일을 적용, 같은 클래스 이름이면 모두 적용
+	* 클래스(Class): 비슷한 특징을 갖는 요소를 지정하여 묶을 수 있음, 여러 번 사용 가능
+	* __.(클래스 이름) {}__  로 적용
+* __전체 선택자(Universal Selector)__: 모든 요소에 스타일을 적용, 모든 요소에 적용하기 때문에 속도 저하 가능성 있음.
+	* __* {}__ 로 적용
+* __속성 선택자(Attribute Selector)__: 특정 속성을 소유하는 모든 요소에 스타일을 적용
+	* __선택자[속성명="속성값"] {}__ 로 적용
+	* 예) a[target="blank"]{color:red;} => <a>태그의 target속성의 값이 "blank"인 태그들의 요소를 red로 적용
+* __복합 선택자__
+	* 부모 <- 나 -> 자식
+	```
+	<section>				// 부모
+		<article>			// 나
+			<div></div>		// 자식
+			<div></div>
+				<p></p>		// 후손	
+		</article>
+	</section>
+	```
+	* 자식(Child) 요소: 해당 태그 바로 아래의 요소들
+	* 후손(Descendant) 요소: 해당 태그 아래의 모든 요소들
+	<img src = "C:\Users\xzba1\Desktop\likelion\HTML_CSS\복합선택자.png">
+	* __자식 선택자(Child Selector)__: 선택자A의 모든 자식 중 선택자B와 일치하는 요소 선택
+		* __선택자A > 선택자B {}__ 로 적용
+		* 예) article > p {color:red;} => article태그의 자식 중 p태그만 red로
+	* __후손 선택자(Descendant Selector)__: 선택자A의 모든 후손 중 선택자B와 일치하는 요소 선택
+		* __선택자A 선택자B {}__ 로 적용(띄어쓰기로 구분)
+		* 예) article p {color:red;} => article태그의 후손 중 p 태그만 red
+* __pseudo 클래스 선택자__: 요소의 특별한 상태를 지정할 때 씀
+	* __선택자:pesudo-class {}__ 로 적용
+	* pseudo(가상의) => pseudo-class(가상의 클래스)
+	* :link => 방문하지 않은 링크일 경우
+	* :visited => 방문한 링크일 경우
+	* :hover => 요소에 마우스가 올라와 있을 경우
+
+
+
+
+
+## 값과 단위
+#### 숫자값과 백분율
+* CSS 값의 종류: 숫자값, 키워드, 색 등등
+* 숫자값
+	* 보통 글자의 크기(Font-size)를 숫자값으로 조정
+	* 단위
+		* __px(픽셀)__: 화소로, 디스플레이를 구성하는 최소 단위
+			* 1px은 장치의 해상도에 따라 다른 크기를 갖기 때문에 
+			* 브라우저에서는 1px = 1/96 in(인치) => 절대크기
+		* em, rem => 상대적인 길이
+		* __em__: 현재 스타일이 지정된 요소의 font-size기준
+		* __rem__: 최상위 요소의 font-size기준
+		* __1em(1rem) = 기준 font-size * 1em(1rem)__
+			* 예) 10em(10rem) = 16px * 10 = 160px
+		* em과 rem은 크기가 다양한 브라우저 환경에서 상대적으로 크기를 조정할 수 있기 때문에 절대적인 px보다 유용 (그러나 em은 상속의 문제가 있기 때문에 rem을 쓰는 것을 권장)
+		* __%(퍼센트)__: 상대 길이, 보통 이미지나 레이아웃의 너비나 높이를 지정할 때 씀.
+* 색상
+	* 키워드로 표현: blue; orange; 예) color:blue;
+	* __hex code__: #000000; #ffffff; 등등 예) background-color:#ffffff;
+		* 투명도 설정 => #000000 + 50(숫자) : 예) #00000050;
+	* __rgb__: rgb(255, 0, 0); 예) color: rgb(255, 2, 0);
+		* 투명도 설정 => rgb(255, 255, 0, .5(실수))
+
+
+
+
+
+
+## 텍스트와 관련된 프로퍼티
+
+#### 폰트
+* __font-size__
+* __font-family__: 폰트의 종류를 정의, 폰트를 여러개 정의(앞에서 부터 실행, 마지막에는 항상 일반 폰트 작성)
+	* 폰트 파일, 웹 폰트로도 적용 가능(링크태그 이용)
+	* 한 폰트만 정의할 때는 따옴표 필요 없지만, 여러 폰트를 정의하는 경우 따옴표 필요
+* __font-style__: Italic체 또는 BOLD
+	* normal: 기본 폰트
+	* italic: Italic체가 디자인이 되어있는 경우 Italic체로 표현
+	* oblique: 글자를 기울여서 표현
+	* 예) font-style:oblique;
+* __font-weight__: 폰트 굵기를 지정
+	* bold
+	* 100 ~ 900까지의 수: 100 ... 400(normal)...700(bold)...900
+
+
+* __font__ 로 한 번에 모두 적용 가능
+	* 예)
+	```
+	<style>
+		#main { 
+			font: oblique 900 35px '고딕', sans-se
+		}
+	</style>
+	```
+	
+	
+#### 텍스트 정렬과 관련된 속성
+* __text-align__: 텍스트를 좌,우,중앙 정렬함
+	* left / center / right
+	* 각 요소(자기자신, 웹 브라우저(X))를 기준으로 정렬됨
+* __line-height__: 문장 사이의 간결을 조정함
+	* 단위 / 숫자 등으로 표현
+	<img src="C:\Users\xzba1\Desktop\likelion\HTML_CSS\line-height.png">
+* __letter-spacing__: 글자와 글자 사이의 간격을 조정함, 자간
+* __text-indent__: 문단의 시작부에 들여쓰기를 함
+
+
+
+
+
+## 박스 모델
+#### 박스 모델 개념
+* 박스 형태의 크기를 조정하여 브라우저 상에 올바르게 배치할 수 있음
+* __Box Model__
+	* Content(내용): 실제 내용
+	* Border(경계선): content를 감싸고 있는 테두리
+		* border-style: dashed / solid / dotted / double 등등 
+			* 1개 => 4면이 적용
+			* 2개 => 상하/좌우 적용
+			* 3개 => 상/좌우/하 적용
+			* 4개 => 상/하/좌/우 적용
+		* border-width: 경계선 두께
+		* border-color: 경계선 색상
+		* __border__ 만으로 모두 표현 가능
+		* 예) border: 4px solid blue;
+		* border-radius: 경계선을 둥글게 표현 가능
+			* 예) border-radius: 12px;은 모서리의 반지름이 12px
+			* border-top-left-radius / border-top-right-radius / border-bottom-left-radius / border-bottom-right-radius의 네 방향을 적용 가능
+			* border-top-left-radius: 10px 30px 과 같이 타원형으로도 적용 가능
+	* Padding(패딩): content와 Border사이의 여백
+	* Margin(마진): Border밖의 여백
+		* Margin과 Padding 모두 네 방향(상하좌우)을 따로 적용 가능
+		* 주의> 위 아래 다른 요소에서 Margin을 적용하면 두 Margin이 공존하지 않고,
+		* CSS의 __마진 상쇄(Margin Collapse)__에 의해 마진이 작은 쪽은 상쇄되고 마진이 큰 쪽을 따라가게 됨.
+	* box-sizing: 박스의 크기 조정
+		* 기본값: content-box;
+			* box-sizing: content-box; => width(height) == content size
+		* border-box; => border를 포함해 박스 사이즈 정함
+			* box-sizing: border-box; => width(height) == content size + padding + border 
+
+
+
+
+
+## 위치와 관련된 프로퍼티[1]
+#### dispaly: 요소가 보여지는 방식을 지정하는 프로퍼티
+* HTML요소를 dispaly:block의 block요소와 display:inline의 inline요소로 나눌 수 있음
+* __block 요소__ 
+* width를 기본 100%로 가짐 => 항상 새로운 줄에서 시작
+=> <div>, <h1>~<h6>, <p>, <header>, <section> 등등
+* __width, height, margin, padding__ 지정 가능
+	
+* __inline 요소__
+* 필요한 만큼의 너비(width)만 가짐 => 요소의 content크기 만큼만 너비를 가짐
+=> <a>, <span>, <img> 등등 
+* __width, height, margin-top, margin-bottom__ 지정 불가능
+	*__dispaly: inline-block;__: block요소와 inline요소의 특징을 모두 가지고 있음.
+	* __width, height, margin-top, margin-bottom__지정 가능
+* __dispaly:none;__: 브라우저에 해당 요소 출력 X
+
+#### position: 요소의 위치를 정의
+* __position:static;__: 기본값으로 좌표 프로퍼티를 쓸 수 없음
+* __position:relative;__: 상대 위치로 기본 위치를 기준으로 좌표를 사용함
+* __position:absolute;__: 부모나 조상 중 relative, absolute, fixed가  선언된 곳을 기준으로 좌표 프로퍼티 적용
+* __position:fixed;__: fixed는 보이는 화면을 기준으로 좌표 프로퍼티를 이용하여 위치를 고정
+	* 고정한 상태에서 스크롤을 이동해도 브라우저 화면에 고정됨
+* __z-index__: 숫자로 우선 순위 지정
+
+	
+
+
+
+## 위치와 관련된 프로퍼티[2]
+#### flexbox
+* flex container(부모요소) + flex item(자식요소) 로 구성
+	* 정렬하고자 하는 부모요소에 __display:flex;__를 추가 해줌 (이때 이를 추가한 요소가 flex container, 자식요소가 flex item이 됨. 또한 추가해주지 않으면 flexbox 사용할 수 없음)
+* flexbox의 핵심 => "가로" or "세로"의 정해진 방향으로 프로퍼티 정렬
+
+* __flex container(부모요소)__
+
+  * __flex-direction__: flex 컨테이너 안의 item들의 방향을 정함
+  	* flex-direction: row; => 기본값으로, 왼쪽에서 오른쪽(->)으로 정렬
+  	* flex-direction: row-reverse; => 오른쪽에서 왼쪽으로(<-)으로 정렬
+  	* flex-direction: column; => 위에서부터 아래로 정렬
+  	* flex-direction: column-reverse; => 아래에서부터 위로 정렬
+  * __flex-wrap__: flex 아이템이 flex 컨테이너를 벗어 났을 때 줄을 바꾸는 속성
+  	* flex-wrap:nowrap; => 기본값으로, 줄을 바꿔주지 않음
+  	* flex-wrap:wrap; => 컨테이너를 벗어 났을 때 줄을 바꿔줌
+  * __flex-flow__: flex direction과 wrap을 동시에 지정 가능
+  	* 예) flex-flow: row wrap; 
+  * __justify-content__: flex-direction으로 정해진 방향을 기준으로 수평으로 item을 정렬하는 방법을 정함
+  	* row일 때는, 좌우(<->)방향이 수평방향
+  	* column일 때는, 상하방향이 수평방향 
+  	* 그냥 정렬방향과 동일하다고 생각
+  	* justify-content: space-around; => 아이템을 기준으로 아이템간의 간격을 동일한 간격으로 설정
+  	* justify-content: space-between; => 양끝의 아이템을 가장자리로 정렬한 뒤 사이 아이템들의 간격을 동일하게 설정 
+  * __align-items__: flex-direction으로 정해진 방향을 기준으로 수직으로 item을 정렬하는 방법을 정함
+  	* row일 때는, 상하방향이 수직방향
+  	* column일 때는, 좌우(<->)방향이 수직방향
+  	* align-items: stretch;(기본값)
+  	* align-items: flex-start; => 시작부분 부터
+  	* align-items: flex-end; => 끝부분 부터
+  	* align-items: center; => 중앙부분 부터
+  	* __align-items: baseline;__ => 아이템의 글꼴의 기준선이 baseline부터 정렬
+  * __ailgn-content__: flex-direction으로 정해진 방향을 기준으로 수직으로 여러 줄인 아이템을 정렬하는 방법을 정함
+
+
+* __flex item(자식요소)__
+	* __flex-grow__: flex 아이템의 확장과 관련된 속성, 기본 0
+		* 값이 0이면 컨테이너의 크기가 커져도 아이템의 크기는 변경 X
+	* __flex-shrink__: flex 아이템의 축소와 관련된 속성, 기본 1
+		* 값이 0이면 컨테이너의 크기가 작아져도 아이템 크기 변경 X
+		
+		* 1이상이면 컨테이너크기 만큼 축소
+		  *__flex-basis__: flex 아이템의 기본 크기를 결정함, 기본 auto
+		
+		* 단위를 같이 써줘야함 (10px, 10% 등등)
+	* __felx__ => flex-grow, flex-shrink, felx-basis를 한 번에 적용
+
+
+
+
+
+
+## 상속과 우선순위
+#### 상속
+* 상속은 부모나 조상요소에 적용된 CSS 프로퍼티가 자식이나 후손에 적용되는 것
+* 모든 CSS 프로퍼티가 상속되는 것은 아님
+	* margin: inherit; => 상속이 되진 않는 프로퍼티를 상속할 때 선언
+
+#### 우선순위(Cascading)
+* 규칙
+	* __중요도__: CSS가 어디에 선언되었는 지에 따라 우선순위가 달라짐
+		1. <head>태그 내의 <sytle>태그
+		2. <head>태그 내의 <style>태그 내의 @import문
+		3. <link>태그로 연결된 CSS
+		4. <link>태그로 연결된 CSS 내의 @import
+		5. 문브라우저 디폴트 스타일시트 
+		
+	* __명시도__
+		1. !important => 프로퍼티와 값을 쓰고 세미콜론을 찍기전에 작성(가장 우선순위 높음)
+		2. 인라인 스타일(inline sytle)
+		3. 아이디 선택자(id selector)
+		4. 클래스, 속성, 가상클래스 선택자
+		5. 태그 선택자
+		6. 전체 선택자
+		7. 상속(inherit)
+		
+	* __선언순서__: 같은 우선순위를 가진 경우, 나중에 선언된 스타일이 우선 적용
+
+
+
+
+
+
+
+
+## Bootstrap
+* 중복된 코드를 줄이고 효과적으로 쉽고 빠르게 웹을 생성할 수 있는 오픈소스 프로그램
+* 부트스트랩의 CSS(<head>태그에)와 JS(<body>태그에)의 코드 복사 붙여넣기
+* 부트스트랩에서 정해둔 클래스이름을 적기만 하면 CSS 적용
+* 그리드 시스템
+	<img src = "C:\Users\xzba1\Desktop\likelion\HTML_CSS\부트스트랩_그리드시스템.png">
+
+	* 그리드 옵션을 이용해 반응형 웹 만들 수 있음
+	* .col-lg-4
+	=> lg: 기준이 되는 화면 사이즈
+	=> 4: 12등분 중 차지할 비율
