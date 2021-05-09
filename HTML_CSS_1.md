@@ -317,7 +317,7 @@
 	```
 	* 자식(Child) 요소: 해당 태그 바로 아래의 요소들
 	* 후손(Descendant) 요소: 해당 태그 아래의 모든 요소들
-	<img src = "C:\Users\xzba1\Desktop\likelion\HTML_CSS\복합선택자.png">
+	<img src = "\복합선택자.png">
 	* __자식 선택자(Child Selector)__: 선택자A의 모든 자식 중 선택자B와 일치하는 요소 선택
 		* __선택자A > 선택자B {}__ 로 적용
 		* 예) article > p {color:red;} => article태그의 자식 중 p태그만 red로
@@ -397,7 +397,7 @@
 	* 각 요소(자기자신, 웹 브라우저(X))를 기준으로 정렬됨
 * __line-height__: 문장 사이의 간결을 조정함
 	* 단위 / 숫자 등으로 표현
-	<img src="C:\Users\xzba1\Desktop\likelion\HTML_CSS\line-height.png">
+	<img src="\line-height.png">
 * __letter-spacing__: 글자와 글자 사이의 간격을 조정함, 자간
 * __text-indent__: 문단의 시작부에 들여쓰기를 함
 
